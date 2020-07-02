@@ -18,7 +18,7 @@ organizations:
   url: "https://www.notsosecure.com/"
 
 # Short bio (displayed in user profile at end of posts)
-bio: I specialize in web-security and have currently started exloring the amazing world of DevSecOps and Automation.
+bio: I specialize in web-security and have currently started exploring the amazing world of DevSecOps and Automation.
 
 interests:
 - Security
