@@ -1,7 +1,7 @@
 ---
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
-title: "Are HIBP API's Safe ?"
+title: "Are HIBP APIs Safe ?"
 subtitle: "Originally written on Blogger"
 summary: ""
 authors: []
