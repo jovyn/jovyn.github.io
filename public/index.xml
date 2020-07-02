@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HackTheRipper</title>
+    <link>https://jovyn.github.io/</link>
+      <atom:link href="https://jovyn.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <description>HackTheRipper</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>www.hacktheripper.com  ©  2020</copyright><lastBuildDate>Thu, 11 Jun 2020 15:51:19 +0530</lastBuildDate>
+    <image>
+      <url>https://jovyn.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>HackTheRipper</title>
+      <link>https://jovyn.github.io/</link>
+    </image>
+    
+    <item>
+      <title>Are Hibp Apis Safe</title>
+      <link>https://jovyn.github.io/post/are-hibp-apis-safe/</link>
+      <pubDate>Thu, 11 Jun 2020 15:51:19 +0530</pubDate>
+      <guid>https://jovyn.github.io/post/are-hibp-apis-safe/</guid>
+      <description>&lt;p&gt;This blog answers the question &amp;lsquo;Have I been Pwned APIs ?&amp;rsquo;&lt;br&gt;
+I wrote a brief write-up on how the HIBP APIs work and how they are safe to use.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Interestingly your password does not even go to the HIBP server&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This was originally written on Blogger.&lt;br&gt;
+Visit 
+&lt;a href=&#34;http://hacktheripper.blogspot.com/2020/06/is-it-safe-to-use-have-i-been-pwned-apis.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;ldquo;Is it safe to use &amp;lsquo;Have I been Pwned APIs ?&amp;rsquo; &amp;ldquo;&lt;/a&gt; to have a read.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What I Learnt From the Pheonix Project</title>
+      <link>https://jovyn.github.io/post/what-i-learnt-from-the-pheonix-project/</link>
+      <pubDate>Sat, 06 Jun 2020 15:43:05 +0530</pubDate>
+      <guid>https://jovyn.github.io/post/what-i-learnt-from-the-pheonix-project/</guid>
+      <description>&lt;p&gt;This blog summarizes the learnings from the book &lt;strong&gt;The Pheonix Project&lt;/strong&gt;.&lt;br&gt;
+I had originally written this post on my Blogger.&lt;br&gt;
+Visit 
+&lt;a href=&#34;https://hacktheripper.blogspot.com/2020/06/the-pheonix-project-what-i-learned-from.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;lsquo;The Pheonix Project - What I learned from it&amp;rsquo;&lt;/a&gt; to have a read.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
