@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts | HackTheRipper</title>
+    <link>https://hacktheripper.com/post/</link>
+      <atom:link href="https://hacktheripper.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <description>Posts</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>www.hacktheripper.com  ©  2020</copyright><lastBuildDate>Fri, 03 Jul 2020 01:50:58 +0530</lastBuildDate>
+    <image>
+      <url>https://hacktheripper.com/images/icon_hu617de424786793b3a09c4e0a85288893_17654_512x512_fill_lanczos_center_2.png</url>
+      <title>Posts</title>
+      <link>https://hacktheripper.com/post/</link>
+    </image>
+    
+    <item>
+      <title>Automating Website Builds &amp; Deployments with Hugo &#43; Travis-CI</title>
+      <link>https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/</link>
+      <pubDate>Fri, 03 Jul 2020 01:50:58 +0530</pubDate>
+      <guid>https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Inspiration&lt;/em&gt; - I was happily living in the past with Blogger until I spoke to 
+&lt;a href=&#34;https://anantshri.info/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Anant&lt;/a&gt; who asked me &lt;em&gt;&amp;ldquo;How are you going to preach about automation and DevSecOps if you do not automate your own work ?&amp;quot;&lt;/em&gt; That made a lot of sense and he pointed me towards Hugo/Jekyll for static site generation and Travis CI or Netlify for continuous integration.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://www.rohitsalecha.com/#about&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Rohit Salecha&lt;/a&gt; has an excellent blog on using 
+&lt;a href=&#34;https://www.rohitsalecha.com/post/create_a_personal_blog_using_hugo_academic_netlify/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo + Academic with Netlify&lt;/a&gt; to achieve the same.&lt;/p&gt;
+&lt;p&gt;After exploring the above options I chose to use Hugo with 
+&lt;a href=&#34;https://themes.gohugo.io/academic/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Academic theme&lt;/a&gt; to generate the static site and use Travis CI to build and push the static content to my gitpages repo. I found an excellent 
+&lt;a href=&#34;https://jellis18.github.io/post/2017-12-03-continuous-integration-hugo/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog by Justin Ellis&lt;/a&gt; that really helped me clear out some of the confusions I had regarding TravisCI integration.&lt;/p&gt;
+&lt;p&gt;Let me break it down - my set up can be broadly divided to 3 parts:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Hugo + Academic = To generate a really awesome static website (like the one you are currently viewing)&lt;/li&gt;
+&lt;li&gt;Github Pages = A repository to host the static web pages.
+This repo will have 2 branches i.e  First a &amp;lsquo;dev&amp;rsquo; branch: where we commit all the binaries and files required by Hugo for building the production site. Second branch is a &amp;lsquo;master&amp;rsquo; branch where the production static files are pushed by Travis CI.&lt;/li&gt;
+&lt;li&gt;Travis CI = To automatically pull code from the dev branch, build the static website and push the production files back to the &amp;lsquo;master&amp;rsquo; branch.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can download Hugo from &lt;a href=&#34;https://gohugo.io/&#34;&gt;https://gohugo.io/&lt;/a&gt; and follow their
+&lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quickstart Guide&lt;/a&gt; to install and learn how to use Hugo. I have a small &amp;ldquo;how-to&amp;rdquo; article for 
+&lt;a href=&#34;https://hacktheripper.blogspot.com/2020/06/installing-hugo-in-windows.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;installing Hugo on Windows&lt;/a&gt;
+Hugo provides you with a multitude of 
+&lt;a href=&#34;https://themes.gohugo.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;themes&lt;/a&gt; and I chose Academic as I found it very comprehensive. Check out 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/install/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Academic  docs&lt;/a&gt; to get started.
+Alternatively you may proceed to use any other theme that best suites your needs as the rest of the procedure reamins the same.&lt;/p&gt;
+&lt;p&gt;Create a new repository (preferably &lt;em&gt;username.github.io&lt;/em&gt;) to host the static files of our website.
+Build the static website and then create a local git repo of the same. Checkout to a &amp;lsquo;dev&amp;rsquo; (or any other non-master) branch and add all the files in the site folder to staging. Set the origin of the local git to the remote repo &lt;em&gt;username.github.io&lt;/em&gt; and commit the changes to the &amp;lsquo;dev&amp;rsquo; branch.&lt;/p&gt;
+&lt;p&gt;Goto 
+&lt;a href=&#34;http://travis-ci.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Travis CI&lt;/a&gt;, login with your Github credentials, and add the &lt;em&gt;username.github.io&lt;/em&gt; repository for Travis to access.
+We now need to provide access of this repository to Travis CI, we do so by creating a GITHUB API Key and adding the GITHUB username and API key to the Travis CI Environment Variables associated with the newly added &lt;em&gt;username.github.io&lt;/em&gt; repository.
+&lt;pic- github keys&gt; , pic &lt;travis env &gt;&lt;/p&gt;
+&lt;p&gt;On the local git repository, we will create a .travis.yml file, this is the config file that contains the actions that the Travis CI is supposed to carry after we commit to the &amp;lsquo;dev&amp;rsquo; branch.
+Below is the .travis.yml file which prompts Travis CI to first install Hugo from the binary location and then check if any folder &amp;ldquo;/pulic&amp;rdquo; exists to delete it.
+Once the script runs, Hugo generates the necessary files in a folder called &amp;ldquo;/public&amp;rdquo;.
+Post this script is run we delete all the other files from the root directory and copy the contents from the &lt;em&gt;&amp;ldquo;public&amp;rdquo;&lt;/em&gt; to the root directory.
+We then add a CNAME file with my domain name - This is needed only if you are hosting the site on a custom domain.
+Checkout to master and add all the files to staging and commit.
+Finally &amp;ldquo;git push orgin master&amp;rdquo; and our production web static files are pushed to the master branch, which is then hosted at &lt;em&gt;&amp;ldquo;&lt;a href=&#34;https://username.github.io&#34;&gt;https://username.github.io&lt;/a&gt;&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  language: python
+
+  install:
+       - sudo dpkg -i binaries/hugo*.deb
+       - pip install Pygments
+  before_script: |
+      if [ -d &amp;quot;/public&amp;quot; ]; then
+      rm -rf /public &amp;amp;&amp;amp; echo &amp;quot;Old public dir deleted ...&amp;quot;
+      fi
+  script:
+      - hugo 
+  after_success: |
+      if [ -n &amp;quot;$GITHUB_API_KEY&amp;quot; ]; then
+      git checkout --orphan master
+      shopt -s extglob
+      rm -rf -v !(&amp;quot;public&amp;quot;|&amp;quot;.git&amp;quot;|&amp;quot;.git*&amp;quot;) 
+      # git rm -rf .
+      mv public/* .
+      rm -rf public binaries/hugo_*
+      echo &amp;quot;hacktheripper.com&amp;quot; &amp;gt; CNAME
+      git add -f --ignore-errors --all
+      git -c user.name=&#39;travis&#39; -c user.email=&#39;travis&#39; commit -m init
+      git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG master
+      fi    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I have created a diagram of the aforementioned workflow for a better understanding:
+&lt;img src=&#34;images/workflow.png&#34; alt=&#34;www.hacktheripper.com workflow&#34; title=&#34;www.hacktheripper.com workflow&#34;&gt;
+References:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34;&gt;https://gohugo.io/getting-started/quick-start/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34;&gt;https://sourcethemes.com/academic/docs/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/&#34;&gt;https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://jellis18.github.io/post/2017-12-03-continuous-integration-hugo/&#34;&gt;https://jellis18.github.io/post/2017-12-03-continuous-integration-hugo/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.rohitsalecha.com/post/create_a_personal_blog_using_hugo_academic_netlify/&#34;&gt;https://www.rohitsalecha.com/post/create_a_personal_blog_using_hugo_academic_netlify/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;PS: This post was published using the above workflow !!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Are HIBP APIs Safe ?</title>
+      <link>https://hacktheripper.com/post/are-hibp-apis-safe/</link>
+      <pubDate>Thu, 11 Jun 2020 15:51:19 +0530</pubDate>
+      <guid>https://hacktheripper.com/post/are-hibp-apis-safe/</guid>
+      <description>&lt;p&gt;This blog answers the question &amp;lsquo;Have I been Pwned APIs ?&amp;rsquo;&lt;br&gt;
+I wrote a brief write-up on how the HIBP APIs work and how they are safe to use.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Interestingly your password does not even go to the HIBP server&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This was originally written on Blogger.&lt;br&gt;
+Visit 
+&lt;a href=&#34;http://hacktheripper.blogspot.com/2020/06/is-it-safe-to-use-have-i-been-pwned-apis.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;ldquo;Is it safe to use &amp;lsquo;Have I been Pwned APIs ?&amp;rsquo; &amp;ldquo;&lt;/a&gt; to have a read.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What I Learnt From the Pheonix Project</title>
+      <link>https://hacktheripper.com/post/what-i-learnt-from-the-pheonix-project/</link>
+      <pubDate>Sat, 06 Jun 2020 15:43:05 +0530</pubDate>
+      <guid>https://hacktheripper.com/post/what-i-learnt-from-the-pheonix-project/</guid>
+      <description>&lt;p&gt;This blog summarizes the learnings from the book &lt;strong&gt;The Pheonix Project&lt;/strong&gt;.&lt;br&gt;
+I had originally written this post on my Blogger.&lt;br&gt;
+Visit 
+&lt;a href=&#34;https://hacktheripper.blogspot.com/2020/06/the-pheonix-project-what-i-learned-from.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;lsquo;The Pheonix Project - What I learned from it&amp;rsquo;&lt;/a&gt; to have a read.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://hacktheripper.com/essentials/</loc>
+    <lastmod>2020-09-27T15:51:19+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/</loc>
+    <lastmod>2020-09-27T15:51:19+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/essentials/sed-n-awk/</loc>
+    <lastmod>2020-09-27T15:51:19+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/essentials/scripting-bash/</loc>
+    <lastmod>2020-09-21T15:51:19+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/</loc>
+    <lastmod>2020-07-03T01:50:58+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/post/</loc>
+    <lastmod>2020-07-03T01:50:58+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/post/are-hibp-apis-safe/</loc>
+    <lastmod>2020-06-11T15:51:19+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/post/what-i-learnt-from-the-pheonix-project/</loc>
+    <lastmod>2020-06-06T15:43:05+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/authors/</loc>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/essentials/git-basics/</loc>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/author/jovin-lobo/</loc>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/notes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/publication_types/</loc>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/publication/</loc>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/talk/</loc>
+  </url>
+  
+  <url>
+    <loc>https://hacktheripper.com/tags/</loc>
+  </url>
+  
+</urlset>

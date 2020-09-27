@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories | HackTheRipper</title>
+    <link>https://hacktheripper.com/categories/</link>
+      <atom:link href="https://hacktheripper.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <description>Categories</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>www.hacktheripper.com  ©  2020</copyright>
+    <image>
+      <url>https://hacktheripper.com/images/icon_hu617de424786793b3a09c4e0a85288893_17654_512x512_fill_lanczos_center_2.png</url>
+      <title>Categories</title>
+      <link>https://hacktheripper.com/categories/</link>
+    </image>
+    
+  </channel>
+</rss>

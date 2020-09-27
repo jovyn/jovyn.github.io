@@ -1,0 +1,1144 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Jovin Lobo">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Inspiration - I was happily living in the past with Blogger until I spoke to Anant who asked me &ldquo;How are you going to preach about automation and DevSecOps if you do not automate your own work ?">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171588126-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-171588126-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu617de424786793b3a09c4e0a85288893_17654_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu617de424786793b3a09c4e0a85288893_17654_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="HackTheRipper">
+  <meta property="og:url" content="https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/">
+  <meta property="og:title" content="Automating Website Builds &amp; Deployments with Hugo &#43; Travis-CI | HackTheRipper">
+  <meta property="og:description" content="Inspiration - I was happily living in the past with Blogger until I spoke to Anant who asked me &ldquo;How are you going to preach about automation and DevSecOps if you do not automate your own work ?"><meta property="og:image" content="https://hacktheripper.com/images/icon_hu617de424786793b3a09c4e0a85288893_17654_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://hacktheripper.com/images/icon_hu617de424786793b3a09c4e0a85288893_17654_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-07-03T01:50:58&#43;05:30">
+    
+    <meta property="article:modified_time" content="2020-07-03T01:50:58&#43;05:30">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/"
+  },
+  "headline": "Automating Website Builds \u0026 Deployments with Hugo + Travis-CI",
+  
+  "datePublished": "2020-07-03T01:50:58+05:30",
+  "dateModified": "2020-07-03T01:50:58+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Jovin Lobo"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "HackTheRipper",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hacktheripper.com/images/icon_hu617de424786793b3a09c4e0a85288893_17654_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Inspiration - I was happily living in the past with Blogger until I spoke to Anant who asked me \u0026ldquo;How are you going to preach about automation and DevSecOps if you do not automate your own work ?"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Automating Website Builds &amp; Deployments with Hugo &#43; Travis-CI | HackTheRipper</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">HackTheRipper</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">HackTheRipper</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/essentials"><span>Essentials</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/notes"><span>Notes</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Author</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Automating Website Builds &amp; Deployments with Hugo &#43; Travis-CI</h1>
+
+  
+  <p class="page-subtitle">A blog about how this website is built, deployed and hosted using Hugo, Travis-CI and GitHub Pages.</p>
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jul 3, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/blog-automation-with-hugo-and-travisci/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p><em>Inspiration</em> - I was happily living in the past with Blogger until I spoke to 
+<a href="https://anantshri.info/" target="_blank" rel="noopener">Anant</a> who asked me <em>&ldquo;How are you going to preach about automation and DevSecOps if you do not automate your own work ?&quot;</em> That made a lot of sense and he pointed me towards Hugo/Jekyll for static site generation and Travis CI or Netlify for continuous integration.</p>
+<p>
+<a href="https://www.rohitsalecha.com/#about" target="_blank" rel="noopener">Rohit Salecha</a> has an excellent blog on using 
+<a href="https://www.rohitsalecha.com/post/create_a_personal_blog_using_hugo_academic_netlify/" target="_blank" rel="noopener">Hugo + Academic with Netlify</a> to achieve the same.</p>
+<p>After exploring the above options I chose to use Hugo with 
+<a href="https://themes.gohugo.io/academic/" target="_blank" rel="noopener">Academic theme</a> to generate the static site and use Travis CI to build and push the static content to my gitpages repo. I found an excellent 
+<a href="https://jellis18.github.io/post/2017-12-03-continuous-integration-hugo/" target="_blank" rel="noopener">blog by Justin Ellis</a> that really helped me clear out some of the confusions I had regarding TravisCI integration.</p>
+<p>Let me break it down - my set up can be broadly divided to 3 parts:</p>
+<ol>
+<li>Hugo + Academic = To generate a really awesome static website (like the one you are currently viewing)</li>
+<li>Github Pages = A repository to host the static web pages.
+This repo will have 2 branches i.e  First a &lsquo;dev&rsquo; branch: where we commit all the binaries and files required by Hugo for building the production site. Second branch is a &lsquo;master&rsquo; branch where the production static files are pushed by Travis CI.</li>
+<li>Travis CI = To automatically pull code from the dev branch, build the static website and push the production files back to the &lsquo;master&rsquo; branch.</li>
+</ol>
+<p>You can download Hugo from <a href="https://gohugo.io/">https://gohugo.io/</a> and follow their
+<a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">Quickstart Guide</a> to install and learn how to use Hugo. I have a small &ldquo;how-to&rdquo; article for 
+<a href="https://hacktheripper.blogspot.com/2020/06/installing-hugo-in-windows.html" target="_blank" rel="noopener">installing Hugo on Windows</a>
+Hugo provides you with a multitude of 
+<a href="https://themes.gohugo.io/" target="_blank" rel="noopener">themes</a> and I chose Academic as I found it very comprehensive. Check out 
+<a href="https://sourcethemes.com/academic/docs/install/" target="_blank" rel="noopener">Academic  docs</a> to get started.
+Alternatively you may proceed to use any other theme that best suites your needs as the rest of the procedure reamins the same.</p>
+<p>Create a new repository (preferably <em>username.github.io</em>) to host the static files of our website.
+Build the static website and then create a local git repo of the same. Checkout to a &lsquo;dev&rsquo; (or any other non-master) branch and add all the files in the site folder to staging. Set the origin of the local git to the remote repo <em>username.github.io</em> and commit the changes to the &lsquo;dev&rsquo; branch.</p>
+<p>Goto 
+<a href="http://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a>, login with your Github credentials, and add the <em>username.github.io</em> repository for Travis to access.
+We now need to provide access of this repository to Travis CI, we do so by creating a GITHUB API Key and adding the GITHUB username and API key to the Travis CI Environment Variables associated with the newly added <em>username.github.io</em> repository.
+<pic- github keys> , pic <travis env ></p>
+<p>On the local git repository, we will create a .travis.yml file, this is the config file that contains the actions that the Travis CI is supposed to carry after we commit to the &lsquo;dev&rsquo; branch.
+Below is the .travis.yml file which prompts Travis CI to first install Hugo from the binary location and then check if any folder &ldquo;/pulic&rdquo; exists to delete it.
+Once the script runs, Hugo generates the necessary files in a folder called &ldquo;/public&rdquo;.
+Post this script is run we delete all the other files from the root directory and copy the contents from the <em>&ldquo;public&rdquo;</em> to the root directory.
+We then add a CNAME file with my domain name - This is needed only if you are hosting the site on a custom domain.
+Checkout to master and add all the files to staging and commit.
+Finally &ldquo;git push orgin master&rdquo; and our production web static files are pushed to the master branch, which is then hosted at <em>&ldquo;<a href="https://username.github.io">https://username.github.io</a>&rdquo;</em></p>
+<pre><code>  language: python
+
+  install:
+       - sudo dpkg -i binaries/hugo*.deb
+       - pip install Pygments
+  before_script: |
+      if [ -d &quot;/public&quot; ]; then
+      rm -rf /public &amp;&amp; echo &quot;Old public dir deleted ...&quot;
+      fi
+  script:
+      - hugo 
+  after_success: |
+      if [ -n &quot;$GITHUB_API_KEY&quot; ]; then
+      git checkout --orphan master
+      shopt -s extglob
+      rm -rf -v !(&quot;public&quot;|&quot;.git&quot;|&quot;.git*&quot;) 
+      # git rm -rf .
+      mv public/* .
+      rm -rf public binaries/hugo_*
+      echo &quot;hacktheripper.com&quot; &gt; CNAME
+      git add -f --ignore-errors --all
+      git -c user.name='travis' -c user.email='travis' commit -m init
+      git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG master
+      fi    
+</code></pre>
+<p>I have created a diagram of the aforementioned workflow for a better understanding:
+<img src="images/workflow.png" alt="www.hacktheripper.com workflow" title="www.hacktheripper.com workflow">
+References:</p>
+<ol>
+<li><a href="https://gohugo.io/getting-started/quick-start/">https://gohugo.io/getting-started/quick-start/</a></li>
+<li><a href="https://sourcethemes.com/academic/docs/">https://sourcethemes.com/academic/docs/</a></li>
+<li><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></li>
+<li><a href="https://jellis18.github.io/post/2017-12-03-continuous-integration-hugo/">https://jellis18.github.io/post/2017-12-03-continuous-integration-hugo/</a></li>
+<li><a href="https://www.rohitsalecha.com/post/create_a_personal_blog_using_hugo_academic_netlify/">https://www.rohitsalecha.com/post/create_a_personal_blog_using_hugo_academic_netlify/</a></li>
+</ol>
+<p>PS: This post was published using the above workflow !!</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/&amp;text=Automating%20Website%20Builds%20&amp;amp;%20Deployments%20with%20Hugo%20&#43;%20Travis-CI" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/&amp;t=Automating%20Website%20Builds%20&amp;amp;%20Deployments%20with%20Hugo%20&#43;%20Travis-CI" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Automating%20Website%20Builds%20&amp;amp;%20Deployments%20with%20Hugo%20&#43;%20Travis-CI&amp;body=https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/&amp;title=Automating%20Website%20Builds%20&amp;amp;%20Deployments%20with%20Hugo%20&#43;%20Travis-CI" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Automating%20Website%20Builds%20&amp;amp;%20Deployments%20with%20Hugo%20&#43;%20Travis-CI%20https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://hacktheripper.com/post/blog-automation-with-hugo-and-travisci/&amp;title=Automating%20Website%20Builds%20&amp;amp;%20Deployments%20with%20Hugo%20&#43;%20Travis-CI" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/jovin-lobo/avatar_hu9ef6008a199c9fc454a0a59c87405eb7_106156_270x270_fill_q90_lanczos_center.jpg" alt="Jovin Lobo">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="https://hacktheripper.com/">Jovin Lobo</a></h5>
+        <h6 class="card-subtitle">Infosec . DevSecOps</h6>
+        <p class="card-text">I specialize in web-security and have currently started exploring the amazing world of DevSecOps and Automation.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/_hacktheripper" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/jovin-lobo-3550b638/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/jovyn" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="http://hacktheripper.blogspot.com/" target="_blank" rel="noopener">
+        <i class="fab fa-blogger"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "hacktheripper" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://hacktheripper.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.37431be2d92d7fb0160054761ab79602.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    <a href="http://www.hacktheripper.com">www.hacktheripper.com</a>  ©  2020
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

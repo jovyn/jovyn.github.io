@@ -1,0 +1,1566 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Jovin Lobo">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Basics of sed and awk scripting.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://hacktheripper.com/essentials/sed-n-awk/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171588126-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-171588126-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu617de424786793b3a09c4e0a85288893_17654_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu617de424786793b3a09c4e0a85288893_17654_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://hacktheripper.com/essentials/sed-n-awk/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="HackTheRipper">
+  <meta property="og:url" content="https://hacktheripper.com/essentials/sed-n-awk/">
+  <meta property="og:title" content="sed &amp; awk Tutorial | HackTheRipper">
+  <meta property="og:description" content="Basics of sed and awk scripting."><meta property="og:image" content="https://hacktheripper.com/images/icon_hu617de424786793b3a09c4e0a85288893_17654_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://hacktheripper.com/images/icon_hu617de424786793b3a09c4e0a85288893_17654_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-09-27T15:51:19&#43;05:30">
+    
+    <meta property="article:modified_time" content="2020-09-27T15:51:19&#43;05:30">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>sed &amp; awk Tutorial | HackTheRipper</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">HackTheRipper</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">HackTheRipper</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/essentials"><span>Essentials</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/notes"><span>Notes</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Author</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>sed &amp; awk Tutorial</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Sep 27, 2020
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p><strong>Credits -</strong> These are my notes from 
+<a href="https://www.udemy.com/course/linux-bash-shell-scripting-complete-guide-incl-awk-sed/" target="_blank" rel="noopener">Richard Bohm&rsquo;s Udemy Class</a>.</p>
+<h2 id="sed">SED</h2>
+<hr>
+<ul>
+<li>SED is a stream editor.</li>
+</ul>
+<h4 id="structure-">Structure :</h4>
+<ul>
+<li>
+<p>sed OPTIONS &hellip; [SCRIPT] [INPUTFILE&hellip;.]</p>
+</li>
+<li>
+<p>cat [INPUTFILE] | sed OPTIONS &hellip; [SCRIPT]</p>
+</li>
+<li>
+<p>SCRIPT:</p>
+<ul>
+<li>
+<p><code>[addr]X[options]</code></p>
+<ul>
+<li><code>[addr]</code> - can be a single line, number, a regular expression, or range of lines. If <code>[addr]</code> is specified, the command X will be executed only on the matched lines.</li>
+<li><code>X</code> - single-letter sed command.</li>
+<li>Additional <code>[options]</code> for sed command.</li>
+</ul>
+</li>
+<li>
+<p>Eg:  <code>sed '30,35d' infile.txt &gt; outfile.txt </code></p>
+<ul>
+<li>Delete range of lines Line 30 - line 35 from infile and save output to outfile.txt</li>
+<li><code>d</code> - is the delete command</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Sed by default does not alter the inputfile, only prints.</p>
+</li>
+<li>
+<p>Sed accepts one single command at a time. To use multiple commands use <code>-e</code> option</p>
+</li>
+<li>
+<p>3 ways to specify multiple instructions:</p>
+<ul>
+<li>
+<p>Using <code>;</code> . Eg : <code>sed 's/abc/replace/; s/pqr/replace2/' inputfile</code></p>
+</li>
+<li>
+<p>Using the precedence &lsquo;-e&rsquo; . Eg:   <code>sed 's/abc/replace/' -e  's/pqr/replace2/' inputfile</code></p>
+</li>
+<li>
+<p>Multiline entry:</p>
+<pre><code>       $ sed '
+       &gt; s/Red/Ray/
+       &gt; s/Dev/Development/
+       &gt; ' emp.txt
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="example-file-to-be-used-throughout--emptxt">Example file to be used throughout : emp.txt</h4>
+<pre><code>    cat emp.txt
+
+    output:
+    Name Age Unit
+    Ant  23  IT
+    Bec  25  HT
+    Red  34  CEO
+    Dua  32  FIN
+    Wui  29  PR
+    Wui  29  PR
+    Van  27  Dev
+    Kim  26  Dev
+</code></pre>
+<h4 id="sed-commands-">Sed Commands :</h4>
+<ul>
+<li>
+<p><code>a</code> -  Append text after a line.</p>
+<ul>
+<li>
+<p>eg: Append after IT some text : <code> sed '/IT/a QWE  ## XY' emp.txt</code></p>
+<pre><code>      output:
+      Name Age Unit
+      Ant  23  IT
+      QWE  ## XY
+      Bec  25  HT
+      Red  34  CEO
+      Dua  32  FIN
+      Wui  29  PR
+      Van  27  Dev
+      Kim  26  Dev
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><code>i 'text'</code> - insert text before a line</p>
+<ul>
+<li>
+<p>eg: Insert before IT some text : <code> sed '/IT/i QWE  ## XY' emp.txt</code></p>
+<pre><code>      output:
+      Name Age Unit
+      QWE  ## XY
+      Ant  23  IT
+      Bec  25  HT
+      Red  34  CEO
+      Dua  32  FIN
+      Wui  29  PR
+      Van  27  Dev
+      Kim  26  Dev
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><code>d</code> - delete the pattern</p>
+<ul>
+<li>
+<p>eg: Delete all lines containing &lsquo;Dev&rsquo; : <code> sed '/Dev/d' emp.txt</code></p>
+<pre><code>  output:
+  Name Age Unit
+  Ant  23  IT
+  Bec  25  HT
+  Red  34  CEO
+  Dua  32  FIN
+  Wui  29  PR
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><code>p </code> - print the pattern.</p>
+<ul>
+<li>
+<p>eg:  <code> sed -n '/Dev/p' emp.txt</code> &lsquo;-n&rsquo; is used to explicitly disable print all, as sed prints all by default.</p>
+<pre><code>  output:
+  Van  27  Dev
+  Kim  26  Dev
+</code></pre>
+</li>
+<li>
+<p>eg: &ldquo;Print 2nd line&rdquo;  <code>sed -n '2p' emp.txt </code></p>
+<pre><code>  output:
+  Ant  23  IT
+</code></pre>
+</li>
+<li>
+<p>eg: &ldquo;Print from line 2 to 5&rdquo;  <code>sed -n '2,5p' emp.txt </code></p>
+<pre><code>  output:
+  Ant  23  IT
+  Bec  25  HT
+  Red  34  CEO
+  Dua  32  FIN
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><code>c</code> - Change command used to change lines.</p>
+<ul>
+<li>
+<p>eg: Change all lines with &lsquo;Dev&rsquo; to XXXXXX&hellip; - <code> sed '/Dev/c xxxxxxxxxxxxxxxxxxxxxxx' emp.txt</code></p>
+<pre><code>   output:
+  Name Age Unit
+  Ant  23  IT
+  Bec  25  HT
+  Red  34  CEO
+  Dua  32  FIN
+  Wui  29  PR
+  xxxxxxxxxxxxxxxxxxxxxxx
+  xxxxxxxxxxxxxxxxxxxxxxx
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><code>q[exit-code]</code> - exit sed without processing any more commands or input.</p>
+<ul>
+<li>
+<p>eg:  <code>sed '/Bec/q2' emp.txt</code> will quit once the search pattern matches and will receive exit status code 2. <code>echo $?</code> gives an output of <code> 2</code></p>
+<pre><code>  output:
+  Name Age Unit
+  Ant  23  IT
+  Bec  25  HT
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><code> s/regexp/replacement/[flags]</code> - (substitute) Match the regex against the content of the pattern space. If found replace matched string with &lsquo;replacement&rsquo;. Use <code>g </code> to substitute globally.</p>
+<ul>
+<li>
+<p>Eg: <code>echo &quot;1110000111&quot; | sed 's/000/XXX/'</code> &ndash;&gt; output:  <code>111XXX0111</code></p>
+</li>
+<li>
+<p>Eg: <code> echo &quot;The quick brown fox  , trots away     ...  &quot; | sed 's/[[:space:]]/#/g'</code>. This will replaces all spaces globally. Output : <code>The#quick#brown#fox##,#trots#away#####...##</code></p>
+</li>
+<li>
+<p>Eg: <code>echo &quot;The quick brown fox  , trots away     ...  &quot; | sed 's/[[:space:]]/#/</code> . Without the global flag (g) will simply replace the first instance. &ndash;&gt; output: <code>The#quick brown fox  , trots away     ...  </code></p>
+</li>
+<li>
+<p>Eg: Replace specific lines in a file. <code>sed '8s/Dev/Manager/' emp.txt</code> &ndash;&gt; Replace &lsquo;Dev&rsquo; with &lsquo;Manager&rsquo; on the 8th line.</p>
+<pre><code>  output:
+  Name Age Unit
+  Ant  23  IT
+  Bec  25  HT
+  Red  34  CEO
+  Dua  32  FIN
+  Wui  29  PR
+  Van  27  Dev
+  Kim  26  Manager
+</code></pre>
+</li>
+<li>
+<p>Eg: Replace  all lines we use range <code>1,$</code>. Use command <code>sed '1,$s/e/EE/' emp.txt</code> to replace all instances of &lsquo;e&rsquo; with &lsquo;EE&rsquo;.</p>
+<pre><code>  output:
+  NamEE Age Unit
+  Ant  23  IT
+  BEEc  25  HT
+  REEd  34  CEO
+  Dua  32  FIN
+  Wui  29  PR
+  Van  27  DEEv
+  Kim  26  DEEv
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Command-Line- Options:</p>
+<ul>
+<li>
+<p><code>-n</code> - disable automatic printing; sed produced output when explicitlytold via the p command.</p>
+</li>
+<li>
+<p><code>-e script</code> - add script</p>
+<ul>
+<li>
+<p>eg:  Search some text and quit with exit code 2 : <code>sed -ne '/CEO/p' -ne '/CEO/q2' emp.txt </code> and <code>echo $?</code> will return 2.</p>
+<pre><code>  output:
+  Red  34  CEO
+</code></pre>
+</li>
+<li>
+<p>eg: Print &ldquo;000- before/after -000&rdquo; before and after lines containing &lsquo;Dua&rsquo; :  <code>sed -e '/Dua/a 000- after -000' -e '/Dua/i 000- before -000' emp.txt </code></p>
+<pre><code>  output:
+  Name Age Unit
+  Ant  23  IT
+  Bec  25  HT
+  Red  34  CEO
+  000- before -000
+  Dua  32  FIN
+  000- after -000
+  Wui  29  PR
+  Van  27  Dev
+  Kim  26  Dev
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><code>-r</code> - use extended regular expressions rather than basic regular expressions.</p>
+</li>
+<li>
+<p><code>-i</code> - Use this flag to modify the input file.</p>
+<ul>
+<li>
+<p>We take a copy of emp.txt as emp2.txt and perform the following :  <code> sed -ni '/Wui/p' emp2.txt</code></p>
+</li>
+<li>
+<p><code>cat emp2.txt</code> :</p>
+<pre><code>  output:
+  Wui  29  PR
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><code>e</code> To run scripts. This is different than <code>-e</code></p>
+<ul>
+<li>
+<p><code>sed '/Name/e echo -n &quot;Date:&quot;; date' emp.txt</code>  - Run and print date before &lsquo;Name&rsquo;.</p>
+<pre><code>  output:
+  Date:Sat Aug 29 08:00:34 IST 2020
+  Name Age Unit
+  Ant  23  IT
+  Bec  25  HT
+  Red  34  CEO
+  Dua  32  FIN
+  Wui  29  PR
+  Van  27  Dev
+  Kim  26  Dev
+</code></pre>
+</li>
+<li>
+<p><code>sed '1 e echo -n &quot;Date:&quot;; date' emp.txt</code> - Print date on the first line.</p>
+<pre><code>  output:
+  Date:Sat Aug 29 08:05:41 IST 2020
+  Name Age Unit
+  Ant  23  IT
+  Bec  25  HT
+  Red  34  CEO
+  Dua  32  FIN
+  Wui  29  PR
+  Van  27  Dev
+  Kim  26  Dev
+</code></pre>
+</li>
+<li>
+<p><code> sed '1,$ e echo -n &quot;Date:&quot;; date' emp.txt</code> - Print date before every line.</p>
+<pre><code>  output:
+  Date:Sat Aug 29 08:16:09 IST 2020
+  Name Age Unit
+  Date:Sat Aug 29 08:16:09 IST 2020
+  Ant  23  IT
+  Date:Sat Aug 29 08:16:09 IST 2020
+  Bec  25  HT
+  Date:Sat Aug 29 08:16:09 IST 2020
+  Red  34  CEO
+  Date:Sat Aug 29 08:16:09 IST 2020
+  Dua  32  FIN
+  Date:Sat Aug 29 08:16:09 IST 2020
+  Wui  29  PR
+  Date:Sat Aug 29 08:16:09 IST 2020
+  Van  27  Dev
+  Date:Sat Aug 29 08:16:09 IST 2020
+  Kim  26  Dev
+  Date:Sat Aug 29 08:16:09 IST 2020
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="sed-commands--1">Sed Commands :</h4>
+<p>Its not advised to have long sed scripts on commndline, a better option is to  create a script file.</p>
+<ul>
+<li>Syntax:  sed -f scriptfile inputfile. Where scriptfile contains the sed instructions.</li>
+</ul>
+<hr>
+<h2 id="awk">AWK</h2>
+<hr>
+<p>Searches files for patterns and performs actions specified in the AWK body.</p>
+<h4 id="structure--1">Structure :</h4>
+<ul>
+<li>
+<p><code> awk'program_to_perform_action' file1 file2 ...</code></p>
+</li>
+<li>
+<p>Divided into 3 sections BEGIN, Main &amp; END</p>
+</li>
+<li>
+<p>BEGIN - Code specified here is executed before executing the operations on the file.</p>
+</li>
+<li>
+<p>Main - Executed for ech line of the file.</p>
+</li>
+<li>
+<p>END - After awk process of all lines.</p>
+<pre><code> awk 'BEGIN{
+     code_in_BEGIN_section}
+ {Code_in_Main_Body}
+ END{
+     code_END_Section }' file1 file2 ...
+</code></pre>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>    echo &quot;one two three&quot; | awk'BEGIN{begin_code}{main_code}END{end_code}'
+</code></pre>
+<p>Example 2:</p>
+<pre><code>    echo &quot;one two three&quot; | awk'{main_code}'
+</code></pre>
+<h3 id="note-in-awk-body-bash-features-do-not-work-awk-has-its-own-syntax">[NOTE] In AWK body, Bash features DO NOT WORK. AWK has its own syntax.</h3>
+<ul>
+<li>
+<p>Hello World: <code>awk 'BEGIN{print &quot;Hello world !&quot;}'</code></p>
+</li>
+<li>
+<p>To print &ldquo;Hello World !&rdquo; on each line after Enter <code>awk '{print &quot;Hello world !&quot;}'</code></p>
+</li>
+<li>
+<p>Example: <code>echo &quot;This is one line&quot; | awk 'BEGIN{print &quot;start&quot;}{print &quot;OK&quot;}END{print &quot;stop&quot;}'</code> The output is as shown below. OK is printed once as there is just one line.</p>
+<pre><code>  Output:
+  start
+  OK
+  stop
+</code></pre>
+</li>
+<li>
+<p>Example (lets input a file hello.txt which has 3 lines): <code>cat hello.txt | awk 'BEGIN{print &quot;start&quot;}{print &quot;OK&quot;}END{print &quot;stop&quot;}'</code> OR <code>awk 'BEGIN{print &quot;start&quot;}{print &quot;OK&quot;}END{print &quot;stop&quot;}' hello.txt </code></p>
+<pre><code>  output:
+  start
+  OK
+  OK
+  OK
+  stop
+</code></pre>
+</li>
+</ul>
+<h3 id="fields-">Fields :</h3>
+<ul>
+<li>
+<p>Fields are by default seperated by space.</p>
+</li>
+<li>
+<p><code>$0</code> prints entire line</p>
+</li>
+<li>
+<p><code>$1</code> prints the first field and so on ..</p>
+</li>
+<li>
+<p>Examples:</p>
+<ul>
+<li><code>echo &quot;1 2 3 4 5&quot; | awk '{print $0}'</code> will output <code>1 2 3 4 5</code></li>
+<li><code>echo &quot;1 2 3 4 5&quot; | awk '{print $1}'</code> will output <code> 1</code></li>
+<li><code>echo &quot;1 2 3 4 5&quot; | awk '{print $3}'</code> will output <code>3</code></li>
+</ul>
+</li>
+<li>
+<p>Examples with a File (emp.txt)</p>
+</li>
+<li>
+<p>To print all columns in the file <code> awk '{print $0}' emp.txt</code></p>
+<p>Output:</p>
+<pre><code> Name Age Unit
+  Ant  23  IT
+  Bec  25  HR
+  Red  34  CEO
+  Dua  32  FIN
+</code></pre>
+</li>
+<li>
+<p><code> awk '{print $1}' emp.txt</code></p>
+<pre><code>  Name
+  Ant
+  Bec
+  Red
+  Dua
+</code></pre>
+</li>
+<li>
+<p><code> awk '{print $2}' emp.txt</code></p>
+<pre><code>  Age
+  23
+  25
+  34
+  32
+</code></pre>
+</li>
+<li>
+<p><code> awk '{print $3}' emp.txt</code></p>
+<pre><code>  Unit
+  IT
+  HR
+  CEO
+  FIN
+</code></pre>
+</li>
+<li>
+<p><code> awk '{print $1,$3}' emp.txt</code></p>
+<pre><code>  Name Unit
+  Ant IT
+  Bec HR
+  Red CEO
+  Dua FIN
+</code></pre>
+</li>
+</ul>
+<h3 id="search-patterns-">Search Patterns :</h3>
+<p>Awk performs operations line by line. Search pattern is defined between &lsquo;//&rsquo;.
+AWK uses the default Regular Expressions</p>
+<p>eg 1 :   <code> awk ' /CEO/ {print $1,$3}' emp.txt</code></p>
+<pre><code>output:
+    Red CEO
+</code></pre>
+<h3 id="nf---number-of-fields-">NF - Number of Fields :</h3>
+<ul>
+<li><code>echo &quot;1 two 3 four&quot; | awk '{print NF}'</code> Output : <code>4</code></li>
+<li><code>echo &quot;1 two 3 four&quot; | awk '{print $(NF-2)}'</code> Output : <code>two</code>.</li>
+<li>$NF = 4 and using this we could do mathemetical operations. Eg. To print the second last field we could &lsquo;{print $(NF-1)}&rsquo;</li>
+</ul>
+<h3 id="nr---number-of-records-">NR - Number of Records :</h3>
+<p>Records in Awk are by default seperated by a newline.</p>
+<p>Eg 1: <code> echo &quot;1 two 3 four&quot; | awk '{print $(NR)}'</code> . Output : <code>1</code></p>
+<p>Eg 2:  <code> awk '{print NR}' emp.txt</code></p>
+<pre><code>Output:
+    1
+    2
+    3
+    4
+    5
+    6
+</code></pre>
+<p>As <code>awk</code> processess line by line, for each line it prints the nos. of records found.</p>
+<p>To print exact records from a file we could use <code>END</code>.
+Eg: <code>awk 'END{print NR}' emp.txt</code>. Output : <code>6</code></p>
+<h3 id="fs---field-seperator-">FS - Field Seperator :</h3>
+<p>Default is space. We can define custom values for the field seperator.</p>
+<ul>
+<li>Eg: <code>echo &quot;102 202 303&quot; | awk 'BEGIN{FS=&quot;0&quot;} {print $1&quot;-&quot;$2&quot;-&quot;$3&quot;-&quot;$4}' </code> . Output of the above command : <code>  1-2 2-2 3-3</code> . We used <code>0</code> as FS.</li>
+</ul>
+<h3 id="rs---record-seperator-">RS - Record Seperator :</h3>
+<p>By default seperated by newline. Can devine custom values for RS (record seperator).</p>
+<ul>
+<li>Eg: <code>echo &quot;102 202 303&quot; | awk 'BEGIN{RS=&quot;0&quot;} END{print NR}'</code> . Output is <code>4</code>.</li>
+<li>Now the default RS would return 1. as there is only one line. Eg. <code>echo &quot;102 202 303&quot; | awk 'END{print NR}'</code>  Output : <code>1</code></li>
+</ul>
+<h3 id="awk-variables-">AWK Variables :</h3>
+<ul>
+<li>
+<p>Assignment :</p>
+<ul>
+<li><code>a=1</code></li>
+<li><code>RS=&quot;\t&quot;</code></li>
+<li><code>FS=&quot;:&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>Increment/ Decrement :</p>
+<ul>
+<li><code>a++ / a--</code></li>
+<li><code> a=a+1 / a=a-1</code></li>
+</ul>
+</li>
+<li>
+<p>Math Operations :</p>
+<ul>
+<li><code>a=b+c</code> add</li>
+<li><code>a=b*c</code> multiply</li>
+<li><code>a=b/c</code> divide</li>
+<li><code>a=b-c</code> subtract</li>
+<li><code>a=b%c</code> Modulus</li>
+<li><code>a=b^c</code> Raise var to the power</li>
+<li><code>a=b**c</code> Raise var to the power</li>
+</ul>
+</li>
+</ul>
+<h3 id="awk---if-statement">AWK - if Statement</h3>
+<pre><code>    if(condition){
+            command(s)
+    }
+    else{
+        command(s)    
+    }
+</code></pre>
+<ul>
+<li>Comparisons:
+<ul>
+<li><code>==</code> , <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code></li>
+<li>eg: <code>awk '{if ($1 == &quot;Red&quot;){print $1, $2, $3}}' emp.txt</code>. Output would be : <code>Red  34  CEO</code>.</li>
+<li>OR if we want to print all fields we could also use $0 instead. Eg: <code>awk '{if ($1 == &quot;Red&quot;){print $0}}' emp.txt</code> Output :  <code>Red  34  CEO</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="awk-for-loops">AWK For loops</h3>
+<p>Structure:</p>
+<pre><code>for (initialization; condition; increment){
+        command(s)
+}
+</code></pre>
+<ul>
+<li>
+<p>Eg: <code>awk 'BEGIN{for(i=1; i&lt;=3; i++){print &quot;test -&quot;, i}}'</code>
+Output:</p>
+<pre><code>  test - 1
+  test - 2
+  test - 3
+</code></pre>
+</li>
+</ul>
+<h3 id="awk-script-files-">AWK Script files :</h3>
+<ul>
+<li>Structure :  <code> awk -f awkscript inputfiles</code></li>
+</ul>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://hacktheripper.com/essentials/sed-n-awk/&amp;text=sed%20&amp;amp;%20awk%20Tutorial" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://hacktheripper.com/essentials/sed-n-awk/&amp;t=sed%20&amp;amp;%20awk%20Tutorial" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=sed%20&amp;amp;%20awk%20Tutorial&amp;body=https://hacktheripper.com/essentials/sed-n-awk/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://hacktheripper.com/essentials/sed-n-awk/&amp;title=sed%20&amp;amp;%20awk%20Tutorial" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=sed%20&amp;amp;%20awk%20Tutorial%20https://hacktheripper.com/essentials/sed-n-awk/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://hacktheripper.com/essentials/sed-n-awk/&amp;title=sed%20&amp;amp;%20awk%20Tutorial" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/jovin-lobo/avatar_hu9ef6008a199c9fc454a0a59c87405eb7_106156_270x270_fill_q90_lanczos_center.jpg" alt="Jovin Lobo">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="https://hacktheripper.com/">Jovin Lobo</a></h5>
+        <h6 class="card-subtitle">Infosec . DevSecOps</h6>
+        <p class="card-text">I specialize in web-security and have currently started exploring the amazing world of DevSecOps and Automation.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/_hacktheripper" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/jovin-lobo-3550b638/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/jovyn" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="http://hacktheripper.blogspot.com/" target="_blank" rel="noopener">
+        <i class="fab fa-blogger"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://hacktheripper.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.37431be2d92d7fb0160054761ab79602.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    <a href="http://www.hacktheripper.com">www.hacktheripper.com</a>  ©  2020
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
