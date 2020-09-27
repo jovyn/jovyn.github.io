@@ -12,12 +12,17 @@
 [[main]]
   name = "Author"
   url = "#about"
-  weight = 30
+  weight = 40
 
 [[main]]
-  name = "Notes & HowTos"
-  url = "/notes_n_howtos"
+  name = "Essentials"
+  url = "/essentials"
   weight = 20
+
+[[main]]
+  name = "Notes"
+  url = "/notes"
+  weight = 30
 
 # [[main]]
  # name = "Projects"

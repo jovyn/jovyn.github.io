@@ -1,5 +1,5 @@
 ---
-title: "Notes & HowTos"
+title: "Notes"
 subtitle: "Bunch of my notes and HowTos"
 ---
 *These notes are linked to my [Blogger](https://hacktheripper.blogspot.com/) and some are a work-in-progess and would be getting updated*  
